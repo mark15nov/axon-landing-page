@@ -31,21 +31,26 @@ const QA = [
   },
 ];
 
+const PROOF = {
+  quote:
+    "Antes el cierre dependía de reportes armados a mano. Ahora vemos la operación completa en una sola lectura y decidimos sin esperar al fin de mes.",
+};
+
 function Item({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-t border-line">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-center justify-between gap-6 py-6 text-left"
+        className="flex w-full items-center justify-between gap-5 py-5 text-left"
       >
-        <span className="font-serif text-[clamp(1.15rem,2vw,1.6rem)] font-normal leading-snug text-ink">
+        <span className="font-serif text-[clamp(1.05rem,1.55vw,1.35rem)] font-normal leading-snug text-ink">
           {q}
         </span>
         <motion.span
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.3, ease: EASE }}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-[20px] text-muted"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-[17px] text-muted"
         >
           +
         </motion.span>
@@ -59,7 +64,7 @@ function Item({ q, a }: { q: string; a: string }) {
             transition={{ duration: 0.4, ease: EASE }}
             className="overflow-hidden"
           >
-            <p className="max-w-[60ch] pb-6 text-[15px] leading-relaxed text-muted">
+            <p className="max-w-[56ch] pb-5 text-[14px] leading-relaxed text-muted">
               {a}
             </p>
           </motion.div>
@@ -71,18 +76,30 @@ function Item({ q, a }: { q: string; a: string }) {
 
 export default function FAQ() {
   return (
-    <section className="bg-paper py-24 sm:py-32">
-      <div className="mx-auto max-w-[1000px] px-5 sm:px-8">
-        <p className="kicker mb-5 text-muted">FAQ</p>
-        <Reveal>
-          <h2 className="mb-10 font-serif text-[clamp(2.4rem,5vw,4rem)] font-normal leading-[1.02] text-ink">
-            Preguntas y respuestas.
-          </h2>
-        </Reveal>
-        <div className="border-b border-line">
-          {QA.map((item) => (
-            <Item key={item.q} {...item} />
-          ))}
+    <section className="bg-paper py-20 sm:py-28">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+          <div>
+            <p className="kicker mb-4 text-muted">FAQ</p>
+            <Reveal>
+              <h2 className="mb-8 font-serif text-[clamp(2rem,3.6vw,3.25rem)] font-normal leading-[1.02] text-ink">
+                Preguntas y respuestas.
+              </h2>
+            </Reveal>
+            <div className="border-b border-line">
+              {QA.map((item) => (
+                <Item key={item.q} {...item} />
+              ))}
+            </div>
+          </div>
+
+          <aside className="py-7 lg:sticky lg:top-28 lg:mt-[4.9rem] lg:self-start lg:py-8">
+            <figure>
+              <blockquote className="font-serif text-[clamp(1.35rem,2.25vw,2.5rem)] font-normal leading-[1.08] text-muted">
+                &ldquo;{PROOF.quote}&rdquo;
+              </blockquote>
+            </figure>
+          </aside>
         </div>
       </div>
     </section>

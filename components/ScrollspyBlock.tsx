@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import PaintedBackground from "./PaintedBackground";
+import IntelligenceFlow from "./IntelligenceFlow";
 import { Reveal } from "./motion";
 
 const NAV = [
@@ -325,6 +326,8 @@ export default function ScrollspyBlock() {
                   </Reveal>
                 ))}
               </div>
+
+              <IntelligenceFlow />
             </section>
 
             {/* BENEFICIOS */}

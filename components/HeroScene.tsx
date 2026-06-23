@@ -1,22 +1,20 @@
 import React from "react";
 
 /**
- * Fondo del hero: pintura real (public/hero-bg.jpeg) a sangre completa,
- * con una capa sutil para legibilidad del texto blanco y grano de película.
+ * Fondo del hero: imagen oscura a sangre, con grano de película.
  */
 export default function HeroScene({ className = "" }: { className?: string }) {
   return (
-    <div aria-hidden className={`absolute inset-0 overflow-hidden ${className}`}>
-      {/* fondo: domo azul */}
+    <div aria-hidden className={`absolute inset-0 overflow-hidden bg-black ${className}`}>
+      {/* fondo: textura negra a sangre (cover, sin bordes) */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero-bg-dome.jpg')" }}
+        style={{ backgroundImage: "url('/black%20bg.jpg')" }}
       />
-
-      {/* capa de legibilidad sutil: mantiene el azul vibrante pero da contraste
-          al texto blanco (más oscura arriba y abajo) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/35" />
-
+      {/* capa para oscurecer el fondo */}
+      <div className="absolute inset-0 bg-black/55" />
+      {/* gradiente inferior: funde hacia negro la transición a la siguiente sección */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-black" />
       {/* grano de película */}
       <svg className="absolute inset-0 h-full w-full opacity-[0.10] mix-blend-overlay">
         <filter id="hero-grain">

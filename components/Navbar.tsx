@@ -12,7 +12,7 @@ export function Wordmark({ dark = false }: { dark?: boolean }) {
     <a href="#top" className="inline-flex items-center">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={dark ? "/axon-allwhite.png" : "/axon-black.png"}
+        src={dark ? "/axon-white.png" : "/axon-black.png"}
         alt="AXON"
         className="h-7 w-auto"
       />

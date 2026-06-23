@@ -13,7 +13,10 @@ export default function SocialProof() {
               <div className="border-b border-line-dark p-7 sm:p-10 lg:border-b-0 lg:border-r">
                 <p className="kicker mb-6 text-white/45">Respaldo</p>
                 <div className="flex items-end gap-4">
-                  <span className="font-serif text-[clamp(4.5rem,10vw,8rem)] font-normal leading-[0.78] text-white">
+                  <span
+                    className="inline-block bg-cover bg-center bg-clip-text pb-2 pt-1 font-serif text-[clamp(4.5rem,10vw,8rem)] font-normal leading-none text-transparent"
+                    style={{ backgroundImage: "url('/cta-bg-orange.jpg')" }}
+                  >
                     +30
                   </span>
                   <span className="pb-2 text-[15px] font-medium leading-tight text-white/55">

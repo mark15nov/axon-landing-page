@@ -51,7 +51,8 @@ export default function Hero() {
           >
             <a
               href="#contacto"
-              className="rounded-xl bg-white px-6 py-3 text-[14px] font-semibold text-ink transition hover:bg-white/90"
+              className="rounded-2xl bg-cover bg-center px-6 py-3 text-[14px] font-semibold text-ink transition hover:brightness-105"
+              style={{ backgroundImage: "url('/cta-bg-orange.jpg')" }}
             >
               Agendar diagnóstico
             </a>
