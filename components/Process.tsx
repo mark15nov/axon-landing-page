@@ -22,7 +22,7 @@ const STEPS = [
   {
     n: "04",
     title: "Ejecución",
-    tag: "AXON-OS",
+    tag: "",
     body: "Convertimos la inteligencia en planes medibles con responsables, fechas y seguimiento diario.",
   },
 ];

@@ -3,21 +3,22 @@
 import React, { useEffect, useRef, useState } from "react";
 
 /**
- * Slot de screenshot. Si existe /public/screenshots/{name}.{ext} se muestra la
- * FOTO real; si no carga (404), cae al mock codeado que se pasa como children.
+ * Slot de screenshot. Por default muestra el mock codeado que se pasa como
+ * children. Si se pasa src, intenta mostrar una imagen real y cae al mock si
+ * esa imagen no carga.
  *
- * Para usar fotos reales: arrastra el archivo a public/screenshots/ con el
- * nombre indicado (ej. cockpit-automotriz.png). Soporta png, jpg y webp.
+ * Para usar fotos reales: arrastra el archivo a public/screenshots/ y pasa
+ * src="/screenshots/nombre.png".
  */
 export default function Screenshot({
-  name,
+  name: _name,
   alt,
-  ext = "png",
+  src,
   children,
 }: {
   name: string;
   alt: string;
-  ext?: "png" | "jpg" | "jpeg" | "webp";
+  src?: string;
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLImageElement>(null);
@@ -32,13 +33,15 @@ export default function Screenshot({
   return (
     <div className="relative">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        ref={ref}
-        src={`/screenshots/${name}.${ext}`}
-        alt={alt}
-        onLoad={() => setLoaded(true)}
-        className={`block w-full ${loaded ? "" : "hidden"}`}
-      />
+      {src ? (
+        <img
+          ref={ref}
+          src={src}
+          alt={alt}
+          onLoad={() => setLoaded(true)}
+          className={`block w-full ${loaded ? "" : "hidden"}`}
+        />
+      ) : null}
       {/* fallback: mock codeado mientras no haya foto */}
       {!loaded && children}
     </div>

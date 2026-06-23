@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ScrollspyBlock from "@/components/ScrollspyBlock";
-import Process from "@/components/Process";
 import SocialProof from "@/components/SocialProof";
 import Security from "@/components/Security";
 import FAQ from "@/components/FAQ";
@@ -13,7 +12,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ScrollspyBlock />
-      <Process />
       <SocialProof />
       <Security />
       <FAQ />

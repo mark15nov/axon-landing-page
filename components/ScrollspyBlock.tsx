@@ -2,14 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import PaintedBackground from "./PaintedBackground";
-import BrowserFrame from "./BrowserFrame";
-import Screenshot from "./Screenshot";
 import { Reveal } from "./motion";
-import BITablero from "./mocks/BITablero";
-import AlertasIA from "./mocks/AlertasIA";
-import PlanA3 from "./mocks/PlanA3";
-import CobranzaBars from "./mocks/CobranzaBars";
-import { CountUp } from "./motion";
 
 const NAV = [
   { id: "problema", label: "Problema" },
@@ -51,6 +44,52 @@ function FeatureRow({
         </div>
       ))}
     </div>
+  );
+}
+
+function MinimalProblemCards() {
+  const items = [
+    {
+      n: "01",
+      title: "Datos en todos lados",
+      body: "Cada área tiene su sistema y su hoja. Nadie ve el negocio completo en una sola vista.",
+    },
+    {
+      n: "02",
+      title: "Reportes que pierden información",
+      body: "Al consolidar a mano se cuelan errores y la decisión llega tarde.",
+    },
+    {
+      n: "03",
+      title: "El dato no acciona",
+      body: "Ves qué pasó, pero no qué significa ni qué hacer al respecto.",
+    },
+  ];
+
+  return (
+    <Reveal delay={0.08} className="mt-12 block">
+      <div className="grid gap-4 sm:grid-cols-3">
+        {items.map((item) => (
+          <article
+            key={item.n}
+            className="group relative rounded-2xl border border-line bg-paper p-5 transition-colors duration-300 hover:border-muted/35 sm:min-h-[168px] sm:p-6"
+          >
+            <div className="mb-4 flex items-center gap-4">
+              <span className="text-[12px] font-semibold tabular-nums text-muted/65">
+                {item.n}
+              </span>
+              <span className="h-px flex-1 bg-line transition-colors duration-300 group-hover:bg-axon-yellow" />
+            </div>
+            <h4 className="max-w-[18ch] text-[18px] font-semibold leading-tight tracking-tight text-ink">
+              {item.title}
+            </h4>
+            <p className="mt-4 text-[14px] leading-relaxed text-muted">
+              {item.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </Reveal>
   );
 }
 
@@ -180,22 +219,7 @@ export default function ScrollspyBlock() {
                   </>
                 }
               />
-              <FeatureRow
-                cols={[
-                  {
-                    title: "Datos en todos lados",
-                    body: "Cada área tiene su sistema y su hoja. Nadie ve el negocio completo en una sola vista.",
-                  },
-                  {
-                    title: "Reportes que pierden información",
-                    body: "Al consolidar a mano se cuelan errores y la decisión llega tarde.",
-                  },
-                  {
-                    title: "El dato no acciona",
-                    body: "Ves qué pasó, pero no qué significa ni qué hacer al respecto.",
-                  },
-                ]}
-              />
+              <MinimalProblemCards />
             </section>
 
             {/* AXON */}
@@ -210,13 +234,13 @@ export default function ScrollspyBlock() {
                     <span className="block">sobre todo lo que ya usas.</span>
                   </>
                 }
-                sub="AXON no es un SaaS genérico ni una herramienta más. Conectamos por API todos tus sistemas y construimos un sistema único para tu empresa que interpreta tu operación, recomienda decisiones y les da seguimiento. No se queda en mostrarte qué pasó: te dice qué significa y qué hacer."
+                sub="AXON conecta por API todos tus sistemas y construye una capa única para interpretar tu operación, recomendar decisiones y darles seguimiento. Convierte lo que ya pasa en la empresa en señales claras sobre qué significa y qué hacer."
               />
               <Reveal delay={0.1} className="mt-10 block">
-                <div className="overflow-hidden rounded-2xl frame-shadow">
+                <div className="overflow-hidden rounded-2xl">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/axon-dashboard.jpg"
+                    src="/Asset%206seccion%202.png"
                     alt="AXON — Dashboard CEO, semáforo del negocio"
                     className="block w-full"
                   />
@@ -249,100 +273,54 @@ export default function ScrollspyBlock() {
                     <span className="block whitespace-normal sm:whitespace-nowrap">
                       Integración, inteligencia y ejecución.
                     </span>
-                    <span className="block whitespace-nowrap text-muted">
-                      En ese orden.
-                    </span>
                   </>
                 }
-                sub="Tres capas que convierten la información dispersa en un plan de trabajo medible. Las capas 1–2 son AXON-SIE; la capa 3 es AXON-OS."
+                sub="Tres capas que convierten la información dispersa en un plan de trabajo medible."
               />
 
-              {/* diagrama mínimo: las 3 capas, en orden */}
-              <Reveal className="mt-14 block">
-                <div className="relative">
-                  <div
-                    aria-hidden
-                    className="absolute left-1 right-1 top-[5px] hidden h-px bg-line sm:block"
-                  />
-                  <ol className="grid gap-10 sm:grid-cols-3 sm:gap-8">
-                    {[
-                      { n: "01", tag: "AXON-SIE", name: "Integración", desc: "Conectamos tus fuentes en una sola vista." },
-                      { n: "02", tag: "AXON-SIE", name: "Inteligencia", desc: "Detecta desviaciones, explica y recomienda." },
-                      { n: "03", tag: "AXON-OS", name: "Ejecución", desc: "Plan con responsables, fechas y seguimiento." },
-                    ].map((s, i) => (
-                      <li key={s.n} className="relative">
-                        <span
-                          className={`block h-2.5 w-2.5 rounded-full ${
-                            i === 2 ? "bg-axon-yellow" : "bg-ink"
-                          }`}
-                        />
-                        <p className="mt-5 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-muted/70">
-                          <span className="tabular-nums">{s.n}</span>
-                          <span className="h-px w-4 bg-line" />
-                          <span>{s.tag}</span>
-                        </p>
-                        <h4 className="mt-2 font-serif text-[clamp(1.15rem,2vw,1.55rem)] leading-tight text-ink">
-                          {s.name}
-                        </h4>
-                        <p className="mt-1.5 max-w-[24ch] text-[13px] leading-relaxed text-muted">
-                          {s.desc}
-                        </p>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </Reveal>
-
-              <div className="mt-16 space-y-16 sm:space-y-24">
+              <div className="mt-16 grid gap-6 lg:grid-cols-3">
                 {[
                   {
-                    tag: "Capa 01 · AXON-SIE",
-                    name: "Integración · BI",
-                    body: "Conectamos ERP, CRM, Excel, facturación, cobranza y operación. Juntamos toda tu información crítica y te la presentamos simple, visual y útil.",
-                    mock: <BITablero />,
-                    shot: "bi-tablero",
-                    url: "axon.mx/bi",
+                    tag: "",
+                    name: "Integración",
+                    body: "Conectamos tus fuentes críticas y presentamos la operación en una vista simple, visual y útil.",
+                    src: "/integracion.jpg",
                     variant: "soft" as const,
                   },
                   {
-                    tag: "Capa 02 · AXON-SIE",
-                    name: "Inteligencia · Data Analytics + Decision Intelligence",
-                    body: "El sistema detecta desviaciones, causas probables, riesgos y escenarios, y los traduce en recomendaciones. ¿Qué me dice esta información y qué debo hacer?",
-                    mock: <AlertasIA />,
-                    shot: "alertas-ia",
-                    url: "axon.mx/alertas",
+                    tag: "",
+                    name: "Inteligencia",
+                    body: "Detecta desviaciones, riesgos y causas probables, y los convierte en recomendaciones accionables.",
+                    src: "/inteligencia.jpg",
                     variant: "block" as const,
                   },
                   {
-                    tag: "Capa 03 · AXON-OS",
-                    name: "Ejecución · Kaizen",
-                    body: "La inteligencia se vuelve un plan exacto: responsables, fechas límite, KPIs, alertas y seguimiento automático. Un plan de trabajo, exacto y medible, para resolver tu problema.",
-                    mock: <PlanA3 />,
-                    shot: "plan-a3",
-                    url: "axon-os.mx/plan",
+                    tag: "",
+                    name: "Ejecución",
+                    body: "Convierte cada recomendación en un plan con responsables, fechas, KPIs y seguimiento automático.",
+                    src: "/ejecucion.jpg",
                     variant: "soft" as const,
                   },
                 ].map((layer) => (
-                  <Reveal key={layer.name} delay={0.05} className="block">
+                  <Reveal key={layer.name} delay={0.05} className="block min-w-0">
                     {/* texto arriba */}
                     <p className="kicker mb-3 text-[0.62rem] text-cobalt">
                       {layer.tag}
                     </p>
-                    <h3 className="max-w-[20ch] font-serif text-[clamp(1.5rem,2.8vw,2.3rem)] font-normal leading-tight text-ink">
+                    <h3 className="font-serif text-[clamp(1.35rem,1.6vw,1.75rem)] font-normal leading-tight text-ink">
                       {layer.name}
                     </h3>
-                    <p className="mt-3 max-w-[60ch] text-[14px] leading-relaxed text-muted">
+                    <p className="mt-2 text-[13px] leading-normal text-muted">
                       {layer.body}
                     </p>
                     {/* foto DEBAJO, a todo el ancho */}
-                    <div className="mt-8">
-                      <PaintedPanel variant={layer.variant}>
-                        <BrowserFrame url={layer.url}>
-                          <Screenshot name={layer.shot} alt={layer.name}>
-                            {layer.mock}
-                          </Screenshot>
-                        </BrowserFrame>
-                      </PaintedPanel>
+                    <div className="mt-5 overflow-hidden rounded-xl">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={layer.src}
+                        alt={layer.name}
+                        className="aspect-[4/3] w-full object-cover"
+                      />
                     </div>
                   </Reveal>
                 ))}
@@ -354,11 +332,11 @@ export default function ScrollspyBlock() {
               <SectionHead
                 title={
                   <>
-                    De reaccionar tarde a{" "}
+                    Información clara para{" "}
                     <span className="italic">decidir a tiempo.</span>
                   </>
                 }
-                sub="Claridad, anticipación y ejecución medible — el resultado de poner tu información a trabajar dentro de un solo sistema."
+                sub="Claridad, anticipación y ejecución medible para convertir la información del negocio en decisiones concretas."
               />
 
               <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
@@ -377,37 +355,6 @@ export default function ScrollspyBlock() {
                 ))}
               </div>
 
-              {/* proof figures */}
-              <Reveal className="mt-10">
-                <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_1fr]">
-                  <div className="rounded-2xl border border-line bg-ink p-8 text-white">
-                    <p className="kicker mb-6 text-[0.62rem] text-white/45">
-                      Caso real · Cobranza
-                    </p>
-                    <div className="grid grid-cols-3 gap-4">
-                      {[
-                        { n: 4.8, label: "MXN detectados atorados", suf: "M" },
-                        { n: 2.1, label: "de faltante de caja evitado", suf: "M" },
-                        { n: 2.5, label: "recuperados en 30 días", suf: "M" },
-                      ].map((s) => (
-                        <div key={s.label}>
-                          <p className="font-serif text-[clamp(1.8rem,3.4vw,2.8rem)] font-normal leading-none text-axon-yellow">
-                            <CountUp to={s.n} prefix="$" suffix={s.suf} decimals={1} />
-                          </p>
-                          <p className="mt-2 text-[11.5px] leading-snug text-white/55">
-                            {s.label}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <BrowserFrame url="axon-os.mx/cobranza">
-                    <Screenshot name="cobranza" alt="Caso real de cobranza: días pactado vs real">
-                      <CobranzaBars />
-                    </Screenshot>
-                  </BrowserFrame>
-                </div>
-              </Reveal>
             </section>
           </div>
         </div>
