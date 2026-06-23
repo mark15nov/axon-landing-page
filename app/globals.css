@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand ---- */
+  --color-axon-yellow: #f2c200;
+  --color-axon-yellow-soft: #ffd528;
+
+  /* ---- Painted blues (multica-like periwinkle/cobalt) ---- */
+  --color-cobalt: #2a3bd4;
+  --color-periwinkle: #6f7ff0;
+  --color-azure: #4f6bf0;
+  --color-teal: #2a8fb8;
+
+  /* ---- Neutrals ---- */
+  --color-ink: #0b0b0e;
+  --color-ink-2: #111114;
+  --color-paper: #f6f5f2;
+  --color-paper-2: #efeee9;
+  --color-line: #e3e1da;
+  --color-line-dark: #26262c;
+  --color-muted: #6c6c72;
+  --color-muted-dark: #9a9aa3;
+
+  /* ---- Type ---- */
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Easing ---- */
+  --ease-house: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-feature-settings: "ss01", "cv05";
+}
+
+/* tabular numerals everywhere data lives */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Serif display helper */
+.font-serif {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+/* Kicker */
+.kicker {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* Hairline */
+.hairline {
+  border-color: var(--color-line);
+}
+.hairline-dark {
+  border-color: var(--color-line-dark);
+}
+
+/* Long, hard shadow for browser frames (no soft blur) */
+.frame-shadow {
+  box-shadow:
+    0 2px 1px rgba(10, 12, 40, 0.04),
+    0 40px 80px -20px rgba(20, 28, 90, 0.45),
+    0 8px 24px -8px rgba(20, 28, 90, 0.25);
+}
+.frame-shadow-dark {
+  box-shadow:
+    0 40px 90px -20px rgba(0, 0, 0, 0.7),
+    0 8px 30px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-axon-yellow);
+  color: #1a1500;
+}
+
+/* Hide scrollbar utility for marquees */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hero title line reveal — pure CSS so it always runs on mount */
+@keyframes riseIn {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.rise-line {
+  display: block;
+  animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-line {
+    animation: none;
+  }
+}
+
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
