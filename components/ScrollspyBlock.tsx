@@ -35,13 +35,26 @@ function FeatureRow({
   cols: { title: string; body: string }[];
 }) {
   return (
-    <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
-      {cols.map((c) => (
-        <div key={c.title} className="bg-paper p-6">
-          <h4 className="mb-2 text-[15px] font-semibold tracking-tight text-ink">
+    <div className="mt-14 grid overflow-hidden rounded-xl border border-line sm:grid-cols-3">
+      {cols.map((c, index) => (
+        <div
+          key={c.title}
+          className={`px-6 py-7 sm:px-7 ${
+            index > 0 ? "border-t border-line sm:border-l sm:border-t-0" : ""
+          }`}
+        >
+          <div className="mb-5 flex items-center gap-4">
+            <span className="tnum text-[11px] font-semibold text-muted/55">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <span className="h-px flex-1 bg-line" />
+          </div>
+          <h4 className="text-[18px] font-semibold leading-tight tracking-tight text-ink">
             {c.title}
           </h4>
-          <p className="text-[13.5px] leading-relaxed text-muted">{c.body}</p>
+          <p className="mt-4 max-w-[31ch] text-[14px] leading-relaxed text-muted">
+            {c.body}
+          </p>
         </div>
       ))}
     </div>
@@ -145,7 +158,7 @@ export default function ScrollspyBlock() {
   const activeIndex = NAV.findIndex((n) => n.id === active);
 
   return (
-    <div className="relative z-0 -mt-[clamp(45px,12vw,175px)] bg-paper pt-[clamp(45px,12vw,175px)]">
+    <div className="relative z-0 bg-paper">
       {/* mobile progress bar */}
       <div className="sticky top-[68px] z-30 border-b border-line bg-paper/90 backdrop-blur md:hidden">
         <div className="flex">
@@ -194,7 +207,7 @@ export default function ScrollspyBlock() {
           </aside>
 
           {/* content column */}
-          <div className="space-y-28 py-24 sm:space-y-36 sm:py-32">
+          <div className="space-y-28 pb-24 pt-14 sm:space-y-36 sm:pb-32 sm:pt-20">
             {/* PROBLEMA */}
             <section id="problema" className="scroll-mt-32">
               <SectionHead
@@ -237,16 +250,6 @@ export default function ScrollspyBlock() {
                 }
                 sub="AXON conecta por API todos tus sistemas y construye una capa única para interpretar tu operación, recomendar decisiones y darles seguimiento. Convierte lo que ya pasa en la empresa en señales claras sobre qué significa y qué hacer."
               />
-              <Reveal delay={0.1} className="mt-10 block">
-                <div className="overflow-hidden rounded-2xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/Asset%206seccion%202.png"
-                    alt="AXON — Dashboard CEO, semáforo del negocio"
-                    className="block w-full"
-                  />
-                </div>
-              </Reveal>
               <FeatureRow
                 cols={[
                   {
@@ -263,6 +266,7 @@ export default function ScrollspyBlock() {
                   },
                 ]}
               />
+              <IntelligenceFlow showTitle={false} className="mt-16" />
             </section>
 
             {/* METODO */}
@@ -327,7 +331,6 @@ export default function ScrollspyBlock() {
                 ))}
               </div>
 
-              <IntelligenceFlow />
             </section>
 
             {/* BENEFICIOS */}

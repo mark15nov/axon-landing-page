@@ -43,24 +43,25 @@ export default function Process() {
           />
         </h2>
 
-        <Reveal delay={0.1} className="mt-14">
-          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line-dark bg-line-dark md:grid-cols-4">
-            {STEPS.map((s) => (
-              <div key={s.n} className="bg-ink p-7 sm:p-8">
-                <p className="font-serif text-[2.2rem] font-normal leading-none text-white/25 tnum">
-                  {s.n}
-                </p>
-                <div className="mt-6 flex items-center gap-2">
-                  <h3 className="text-[17px] font-semibold tracking-tight">
-                    {s.title}
-                  </h3>
-                  {s.tag && (
-                    <span className="rounded bg-axon-yellow px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-black">
-                      {s.tag}
-                    </span>
-                  )}
+        <Reveal delay={0.1} className="mt-14 block">
+          <div className="grid divide-y divide-line-dark border-y border-line-dark md:grid-cols-4 md:divide-x md:divide-y-0">
+            {STEPS.map((s, i) => (
+              <div
+                key={s.n}
+                className={`py-9 md:py-10 ${
+                  i === 0 ? "md:pr-8" : i === STEPS.length - 1 ? "md:pl-8" : "md:px-8"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="tnum font-serif text-[1.5rem] font-normal leading-none text-axon-yellow">
+                    {s.n}
+                  </span>
+                  <span className="h-px flex-1 bg-line-dark" />
                 </div>
-                <p className="mt-3 text-[13.5px] leading-relaxed text-white/55">
+                <h3 className="mt-6 text-[17px] font-semibold tracking-tight text-white">
+                  {s.title}
+                </h3>
+                <p className="mt-3 max-w-[30ch] text-[13.5px] leading-relaxed text-white/55">
                   {s.body}
                 </p>
               </div>

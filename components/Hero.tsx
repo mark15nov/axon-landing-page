@@ -6,14 +6,14 @@ import { motion, EASE } from "./motion";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative pb-0 pt-[68px]">
+    <section id="top" className="relative pb-28 pt-[68px] sm:pb-36">
       <HeroScene />
 
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8">
         {/* headline */}
-        <div className="mx-auto max-w-[1120px] pt-24 text-center sm:pt-28">
+        <div className="mx-auto max-w-[1080px] pt-24 text-center sm:pt-32">
           <h1
-            className="text-[clamp(1.6rem,5vw,5.4rem)] font-normal leading-[1.04] text-white"
+            className="text-[clamp(1.7rem,5.4vw,5.6rem)] font-normal leading-[1.03] text-white"
             style={{
               fontFamily: '"Instrument Serif", Georgia, serif',
               WebkitTextStroke: "0.6px currentColor",
@@ -21,12 +21,12 @@ export default function Hero() {
           >
             <span className="block overflow-hidden whitespace-nowrap pb-[0.06em]">
               <span className="rise-line" style={{ animationDelay: "0.05s" }}>
-                De información dispersa
+                Cada sistema habla
               </span>
             </span>
             <span className="block overflow-hidden whitespace-nowrap pb-[0.06em]">
               <span className="rise-line" style={{ animationDelay: "0.14s" }}>
-                a Inteligencia Empresarial
+                un idioma distinto.
               </span>
             </span>
           </h1>
@@ -35,12 +35,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.45 }}
-            className="mx-auto mt-8 max-w-[60rem] text-[clamp(0.88rem,1.15vw,1.02rem)] leading-relaxed text-white/75"
+            className="mx-auto mt-8 max-w-[48rem] text-[clamp(0.98rem,1.35vw,1.18rem)] leading-relaxed text-white/78"
           >
-            AXON conecta todos tus sistemas y convierte la información que vuela
-            por toda tu empresa en decisiones claras, planes de mejora y
-            ejecución medible. Sistemas de inteligencia empresarial, hechos a tu
-            medida.
+            Tu equipo pierde horas integrando datos manualmente. Ahí nacen los
+            errores, los retrabajos y las decisiones sin panorama completo.
+            AXON convierte esa información dispersa en una sola lectura
+            operativa.
           </motion.p>
 
           <motion.div
@@ -70,21 +70,6 @@ export default function Hero() {
             </a>
           </motion.div>
         </div>
-
-        {/* cockpit peeking from the bottom */}
-        <motion.div
-          initial={{ opacity: 0, y: 90, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.7 }}
-          className="relative z-20 mx-auto mt-16 max-w-[1240px]"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hero-kpis-v4.jpg"
-            alt="AXON — Dirección General · KPIs corporativos"
-            className="block w-full rounded-xl frame-shadow"
-          />
-        </motion.div>
       </div>
     </section>
   );

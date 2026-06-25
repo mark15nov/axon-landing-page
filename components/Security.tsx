@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Reveal } from "./motion";
+import SystemCarousel from "./SystemCarousel";
 
 export default function Security() {
   return (
@@ -27,16 +28,7 @@ export default function Security() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="mt-12 block">
-          <div className="overflow-hidden rounded-2xl border border-line">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/2x/Asset%208ultima%20seccion.png"
-              alt="Infraestructura y control de información"
-              className="block h-auto w-full"
-            />
-          </div>
-        </Reveal>
+        <SystemCarousel />
       </div>
     </section>
   );
